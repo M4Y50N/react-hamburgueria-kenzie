@@ -1,6 +1,6 @@
 import { StyledSearchBox } from "./styles";
 import { StyledInput } from "../Input";
-import { StyledButton } from "../Buttons";
+import { StyledButton } from "../Buttons/styles";
 
 export const SearchBox = () => {
 	return (
