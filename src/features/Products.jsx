@@ -5,13 +5,14 @@ import { StyledButton } from "../components/Buttons/styles";
 import { StyledProductsContainer } from "../components/ProductsContainer";
 import {
 	StyledCard,
-	StyledCardDiv,
+	StyledCardImg,
 	StyledCardBody,
 	StyledCardTitle,
-	StyledCardCategory,
-	StyledCardPrice,
+	StyledCardP,
+	StyledCardHead,
 } from "../components/ProductsContainer/Card";
 import { StyledProductsList } from "../components/ProductsContainer/ProductsList";
+import { Cart } from "../components/Cart";
 
 import { api } from "../service/api";
 
@@ -48,27 +49,36 @@ export const Products = () => {
 					{products.map((prod, i) => {
 						return (
 							<StyledCard key={i}>
-								<StyledCardDiv
-									srcImg={prod.img}
-									alt={prod.name}
-								></StyledCardDiv>
+								<StyledCardHead>
+									<StyledCardImg src={prod.img} alt={prod.name} />
+								</StyledCardHead>
 								<StyledCardBody>
 									<StyledCardTitle>{prod.name}</StyledCardTitle>
-									<StyledCardCategory>{prod.category}</StyledCardCategory>
-									<StyledCardPrice>R$ {prod.price}</StyledCardPrice>
+									<StyledCardP
+										fontSize={"var(--caption)"}
+										color={"var(--color-text-complement)"}
+									>
+										{prod.category}
+									</StyledCardP>
+									<StyledCardP
+										fontSize={"var(--body-font-size)"}
+										color={"var(--color-primary)"}
+									>
+										R$ {prod.price}
+									</StyledCardP>
 									<StyledButton>Adicionar</StyledButton>
 								</StyledCardBody>
 							</StyledCard>
 						);
 					})}
 				</StyledProductsList>
-				<StyledCard>
+				<Cart>
 					<img src="" alt="x" />
 					<div className="tilte">Hamburguer</div>
 					<div className="category">Sanduíches</div>
 					<div className="price">R$ 14</div>
 					<StyledButton>Adicionar</StyledButton>
-				</StyledCard>
+				</Cart>
 			</StyledProductsContainer>
 		</Container>
 	);
