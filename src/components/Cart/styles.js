@@ -24,6 +24,7 @@ export const StyledCartProducts = styled.ul`
 	flex-direction: column;
 	row-gap: 2rem;
 
+	overflow-x: hidden;
 	overflow-y: auto;
 `;
 

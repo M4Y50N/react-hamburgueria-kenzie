@@ -1,4 +1,5 @@
-import { StyledButton } from "../Buttons/styles";
+import { AppearAnimation, formatPrice } from "../../utils/script";
+import { StyledButton } from "../Buttons";
 import { StyledCardP } from "../ProductsContainer/Card";
 import {
 	StyledCart,
@@ -9,40 +10,50 @@ import {
 	StyledEmptyCart,
 } from "./styles";
 
-export const Cart = () => {
+export const Cart = ({ cart, total, delProductInCart, removeAll }) => {
 	return (
 		<StyledCart>
 			<StyledCartHead>Carrinho de Compras</StyledCartHead>
-			{false ? (
+			{cart.length ? (
 				<>
 					<StyledCartProducts>
-						<StyledCartProductsLi>
-							<img src="https://i.imgur.com/eEzZzcF.png" alt="sadas" />
-							<div>
-								<h4>X-Burguer</h4>
+						{cart.map((prod, i) => (
+							<AppearAnimation key={i} abs={1}>
+								<StyledCartProductsLi>
+									<img src={prod.img} alt="sadas" />
+									<div>
+										<h4>{prod.name}</h4>
 
-								<StyledCardP
-									fontSize={"var(--caption)"}
-									color={"var(--color-text-complement)"}
-								>
-									Sanduiches
-								</StyledCardP>
-								<StyledCardP
-									fontSize={"var(--body-font-size)"}
-									color={"var(--color-primary)"}
-								>
-									R$ 20
-								</StyledCardP>
-							</div>
-							<button>Remover</button>
-						</StyledCartProductsLi>
+										<StyledCardP
+											fontSize={"var(--caption)"}
+											color={"var(--color-text-complement)"}
+										>
+											{prod.category}
+										</StyledCardP>
+										<StyledCardP
+											fontSize={"var(--body-font-size)"}
+											color={"var(--color-primary)"}
+										>
+											R$ {formatPrice(prod.price)}
+										</StyledCardP>
+									</div>
+									<button
+										onClick={() => {
+											delProductInCart(prod.price, i);
+										}}
+									>
+										Remover
+									</button>
+								</StyledCartProductsLi>
+							</AppearAnimation>
+						))}
 					</StyledCartProducts>
 					<StyledCartTotal>
 						<div>
 							<h4>Total</h4>
-							<span>R$ 40</span>
+							<span>R$ {formatPrice(total)}</span>
 						</div>
-						<StyledButton>Remover todos</StyledButton>
+						<StyledButton onClick={removeAll}>Remover todos</StyledButton>
 					</StyledCartTotal>
 				</>
 			) : (
