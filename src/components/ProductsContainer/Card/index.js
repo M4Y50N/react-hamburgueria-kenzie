@@ -34,6 +34,7 @@ export const StyledCardHead = styled.div`
 export const StyledCardImg = styled.img`
 	margin: 0 auto;
 	height: 150px;
+	object-fit: cover;
 `;
 
 export const StyledCardTitle = styled.h3`
@@ -52,8 +53,3 @@ export const StyledCardP = styled.p`
 		`;
 	}}
 `;
-
-// export const StyledCardPrice = styled.p`
-// 	color: var(--color-primary);
-// 	font-weight: 500;
-// `;

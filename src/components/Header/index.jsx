@@ -5,9 +5,9 @@ import {
 	StyledLogoTitle,
 	StyledLogoKenzie,
 } from "./styles";
-import { SearchBox } from "../SearchBox";
+import { SearchBox } from "./SearchBox";
 
-export const Header = () => {
+export const Header = ({ onChange }) => {
 	return (
 		<StyledHeader>
 			<Container>
@@ -15,7 +15,7 @@ export const Header = () => {
 					<StyledLogoTitle>
 						Burguer <StyledLogoKenzie>Kenzie</StyledLogoKenzie>
 					</StyledLogoTitle>
-					<SearchBox />
+					<SearchBox onChange={onChange} />
 				</StyledNav>
 			</Container>
 		</StyledHeader>

@@ -1,7 +1,7 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 
 import { Container } from "../assets/styles/Container";
-import { StyledButton } from "../components/Buttons/styles";
+import { StyledButton } from "../components/Buttons";
 import { StyledProductsContainer } from "../components/ProductsContainer";
 import {
 	StyledCard,
@@ -14,26 +14,36 @@ import {
 import { StyledProductsList } from "../components/ProductsContainer/ProductsList";
 import { Cart } from "../components/Cart";
 
-import { api } from "../service/api";
+import { AppearAnimation, formatPrice } from "../utils/script";
 
-export const Products = () => {
-	const [products, setProduct] = useState([]);
+export const Products = ({ products }) => {
+	const [total, setTotal] = useState(0),
+		[cart, setCart] = useState([]);
 
-	useEffect(() => {
-		async function getProducts() {
-			try {
-				const response = await api.get();
+	const addProductInCart = (img, name, category, price) => {
+		const dataProduct = { img, name, category, price };
 
-				const productsData = response.data;
-				setProduct(productsData);
-			} catch (error) {
-				console.error(error);
-			} finally {
+		setTotal(() => total + price);
+		setCart(() => [...cart, dataProduct]);
+	};
+
+	const delProductInCart = (price, i) => {
+		const newArray = [];
+
+		cart.forEach((prod, ind) => {
+			if (i !== ind) {
+				newArray.push(prod);
 			}
-		}
+		});
 
-		getProducts();
-	}, []);
+		setCart(newArray);
+		setTotal(() => total - price);
+	};
+
+	const removeAll = () => {
+		setCart([]);
+		setTotal(0);
+	};
 
 	return (
 		<Container>
@@ -41,31 +51,49 @@ export const Products = () => {
 				<StyledProductsList>
 					{products.map((prod, i) => {
 						return (
-							<StyledCard key={i}>
-								<StyledCardHead>
-									<StyledCardImg src={prod.img} alt={prod.name} />
-								</StyledCardHead>
-								<StyledCardBody>
-									<StyledCardTitle>{prod.name}</StyledCardTitle>
-									<StyledCardP
-										fontSize={"var(--caption)"}
-										color={"var(--color-text-complement)"}
-									>
-										{prod.category}
-									</StyledCardP>
-									<StyledCardP
-										fontSize={"var(--body-font-size)"}
-										color={"var(--color-primary)"}
-									>
-										R$ {prod.price}
-									</StyledCardP>
-									<StyledButton>Adicionar</StyledButton>
-								</StyledCardBody>
-							</StyledCard>
+							<AppearAnimation key={i} abs={-1}>
+								<StyledCard>
+									<StyledCardHead>
+										<StyledCardImg src={prod.img} alt={prod.name} />
+									</StyledCardHead>
+									<StyledCardBody>
+										<StyledCardTitle>{prod.name}</StyledCardTitle>
+										<StyledCardP
+											fontSize={"var(--caption)"}
+											color={"var(--color-text-complement)"}
+										>
+											{prod.category}
+										</StyledCardP>
+										<StyledCardP
+											fontSize={"var(--body-font-size)"}
+											color={"var(--color-primary)"}
+										>
+											R$ {formatPrice(prod.price)}
+										</StyledCardP>
+										<StyledButton
+											onClick={() => {
+												addProductInCart(
+													prod.img,
+													prod.name,
+													prod.category,
+													prod.price
+												);
+											}}
+										>
+											Adicionar
+										</StyledButton>
+									</StyledCardBody>
+								</StyledCard>
+							</AppearAnimation>
 						);
 					})}
 				</StyledProductsList>
-				<Cart />
+				<Cart
+					cart={cart}
+					total={total}
+					delProductInCart={delProductInCart}
+					removeAll={removeAll}
+				/>
 			</StyledProductsContainer>
 		</Container>
 	);
