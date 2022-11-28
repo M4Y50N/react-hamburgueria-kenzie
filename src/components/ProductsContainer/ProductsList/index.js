@@ -7,4 +7,10 @@ export const StyledProductsList = styled.ul`
 	flex-wrap: wrap;
 	row-gap: 2rem;
 	column-gap: 2rem;
+
+	@media (max-width: 900px) {
+		padding: 2rem 1rem;
+		flex-wrap: nowrap;
+		overflow-x: auto;
+	}
 `;
