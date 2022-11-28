@@ -37,15 +37,8 @@ export const Products = () => {
 
 	return (
 		<Container>
-			<StyledProductsContainer className="products">
+			<StyledProductsContainer>
 				<StyledProductsList>
-					{/* <StyledCard>
-						<img src="" alt="x" />
-						<div className="tilte">Hamburguer</div>
-						<div className="category">Sanduíches</div>
-						<div className="price">R$ 14</div>
-						<StyledButton>Adicionar</StyledButton>
-					</StyledCard> */}
 					{products.map((prod, i) => {
 						return (
 							<StyledCard key={i}>
@@ -72,13 +65,7 @@ export const Products = () => {
 						);
 					})}
 				</StyledProductsList>
-				<Cart>
-					<img src="" alt="x" />
-					<div className="tilte">Hamburguer</div>
-					<div className="category">Sanduíches</div>
-					<div className="price">R$ 14</div>
-					<StyledButton>Adicionar</StyledButton>
-				</Cart>
+				<Cart />
 			</StyledProductsContainer>
 		</Container>
 	);

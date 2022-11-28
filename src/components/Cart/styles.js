@@ -5,6 +5,10 @@ export const StyledCart = styled.div`
 	height: fit-content;
 	border-radius: var(--radius-2);
 	background-color: var(--gray-0);
+
+	@media (max-width: 900px) {
+		width: 100%;
+	}
 `;
 
 export const StyledCartHead = styled.div`

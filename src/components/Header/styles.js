@@ -11,6 +11,11 @@ export const StyledNav = styled.nav`
 	display: flex;
 	align-items: center;
 	justify-content: space-between;
+
+	@media (max-width: 600px) {
+		flex-direction: column;
+		row-gap: 2rem;
+	}
 `;
 
 export const StyledLogoTitle = styled.h1`
