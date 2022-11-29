@@ -16,15 +16,31 @@ import { Cart } from "../components/Cart";
 
 import { AppearAnimation, formatPrice } from "../utils/script";
 
+import { toast, ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+
 export const Products = ({ products }) => {
 	const [total, setTotal] = useState(0),
 		[cart, setCart] = useState([]);
 
-	const addProductInCart = (img, name, category, price) => {
-		const dataProduct = { img, name, category, price };
+	const addProductInCart = (id, img, name, category, price) => {
+		const dataProduct = { id, img, name, category, price };
 
-		setTotal(() => total + price);
-		setCart(() => [...cart, dataProduct]);
+		const repeatItems = cart.filter((prod) => {
+			return prod.id === id;
+		});
+
+		if (!repeatItems.length) {
+			setTotal(() => total + price);
+			setCart(() => [...cart, dataProduct]);
+			toast.success("Produto adicionado", {
+				position: toast.POSITION.BOTTOM_RIGHT,
+			});
+		} else {
+			toast.error("Produto já adicionado", {
+				position: toast.POSITION.BOTTOM_RIGHT,
+			});
+		}
 	};
 
 	const delProductInCart = (price, i) => {
@@ -38,15 +54,23 @@ export const Products = ({ products }) => {
 
 		setCart(newArray);
 		setTotal(() => total - price);
+
+		toast.warn("Produto removido", {
+			position: toast.POSITION.BOTTOM_RIGHT,
+		});
 	};
 
 	const removeAll = () => {
 		setCart([]);
 		setTotal(0);
+		toast.info("Carrinho esvaziado", {
+			position: toast.POSITION.BOTTOM_RIGHT,
+		});
 	};
 
 	return (
 		<Container>
+			<ToastContainer />
 			<StyledProductsContainer>
 				<StyledProductsList>
 					{products.map((prod, i) => {
@@ -73,6 +97,7 @@ export const Products = ({ products }) => {
 										<StyledButton
 											onClick={() => {
 												addProductInCart(
+													prod.id,
 													prod.img,
 													prod.name,
 													prod.category,
