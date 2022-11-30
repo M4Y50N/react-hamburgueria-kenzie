@@ -1,4 +1,5 @@
-import { AppearAnimation, formatPrice } from "../../utils/script";
+import { AppearAnimation } from "../../assets/styles/Animations";
+import { formatPrice } from "../../utils/script";
 import { StyledButton } from "../Buttons";
 import { StyledCardP } from "../ProductsContainer/Card";
 import {

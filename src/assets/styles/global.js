@@ -8,18 +8,21 @@ export default createGlobalStyle`
         --color-primary-transparent: rgba(100,180,71, 0.2);
         
         --color-secondary: #EB5757;
-
+        
         --color-background: #FFFFFF;
-
+        
         --gray-100: #333333;
         --gray-50: #828282;
         --gray-20: #E0E0E0;
         --gray-0: #F5F5F5;
-       
+        
         --color-information: #155BCB;
         --color-success: #168821;
+        --toastify-color-success: #27AE60; 
         --color-warning: #FFCD07;
+        --toastify-color-warning: #FFCD07;
         --color-error: #E60000;  
+        --toastify-color-error: #EB5757;
 
         --font-family: Inter, sans-serif;
        
@@ -39,10 +42,7 @@ export default createGlobalStyle`
 
         --radius-1: 0.5rem;
         --radius-2: 0.8rem;
-    }
 
-    
-    :root {
         font-size: 62.5%;
     }
     

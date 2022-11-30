@@ -1,11 +1,14 @@
 import { useEffect, useState } from "react";
+
 import { Header } from "../components/Header";
-import { api } from "../service/api";
 import { Products } from "./Products";
+
+import { api } from "../service/api";
 
 export const Home = () => {
 	const [products, setProduct] = useState([]),
-		[filterProd, setFilter] = useState("todos");
+		[filterProd, setFilter] = useState("todos"),
+		[loading, setLoading] = useState(true);
 
 	useEffect(() => {
 		async function getProducts() {
@@ -18,6 +21,7 @@ export const Home = () => {
 			} catch (error) {
 				console.error(error);
 			} finally {
+				setLoading(false);
 			}
 		}
 
@@ -29,7 +33,7 @@ export const Home = () => {
 	};
 
 	const filteredArray = products.filter((prod, i) => {
-		return filterProd === "todos"
+		return filterProd.toLocaleLowerCase() === "todos"
 			? true
 			: prod.name.toLowerCase().includes(filterProd.toLowerCase()) ||
 					prod.category.toLowerCase().includes(filterProd.toLowerCase()) ||
@@ -43,7 +47,11 @@ export const Home = () => {
 	return (
 		<>
 			<Header onChange={filterSearch} />
-			<Products products={filteredArray} />
+			<Products
+				products={filteredArray}
+				filterProd={filterProd}
+				loading={loading}
+			/>
 		</>
 	);
 };
