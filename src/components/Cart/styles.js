@@ -29,6 +29,7 @@ export const StyledCartProducts = styled.ul`
 `;
 
 export const StyledCartProductsLi = styled.li`
+	color: var(--gray-100);
 	padding: 1rem 0.7rem;
 	display: flex;
 	align-items: center;
@@ -65,6 +66,7 @@ export const StyledCartProductsLi = styled.li`
 `;
 
 export const StyledCartTotal = styled.div`
+	color: var(--gray-100);
 	padding: 2rem 1rem;
 	display: flex;
 	flex-direction: column;
@@ -95,6 +97,7 @@ export const StyledCartTotal = styled.div`
 `;
 
 export const StyledEmptyCart = styled.div`
+	color: var(--gray-100);
 	padding: 7rem 5rem;
 	text-align: center;
 	background-color: var(--gray-0);

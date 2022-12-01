@@ -7,4 +7,8 @@ export const StyledSearchBox = styled.div`
 	background-color: var(--color-background);
 	box-shadow: 0 0 0.5rem var(--gray-20) inset;
 	border-radius: var(--radius-2);
+
+	& > input {
+		color: var(--gray-100);
+	}
 `;

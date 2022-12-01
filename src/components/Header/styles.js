@@ -19,6 +19,7 @@ export const StyledNav = styled.nav`
 `;
 
 export const StyledLogoTitle = styled.h1`
+	color: var(--gray-100);
 	font-size: var(--title-1);
 	font-weight: 500;
 `;

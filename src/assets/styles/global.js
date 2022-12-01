@@ -9,12 +9,12 @@ export default createGlobalStyle`
         
         --color-secondary: #EB5757;
         
-        --color-background: #FFFFFF;
+        --color-background: ${({ theme }) => theme.colors.background};
         
-        --gray-100: #333333;
-        --gray-50: #828282;
-        --gray-20: #E0E0E0;
-        --gray-0: #F5F5F5;
+        --gray-100: ${({ theme }) => theme.colors.gray_100};
+        --gray-50: ${({ theme }) => theme.colors.gray_50};
+        --gray-20: ${({ theme }) => theme.colors.gray_20};
+        --gray-0: ${({ theme }) => theme.colors.gray_0};
         
         --color-information: #155BCB;
         --color-success: #168821;
@@ -23,6 +23,10 @@ export default createGlobalStyle`
         --toastify-color-warning: #FFCD07;
         --color-error: #E60000;  
         --toastify-color-error: #EB5757;
+
+        
+        --toastify-color-light: ${({ theme }) =>
+					theme.colors.toastify_toast_background};
 
         --font-family: Inter, sans-serif;
        

@@ -38,6 +38,7 @@ export const StyledCardImg = styled.img`
 `;
 
 export const StyledCardTitle = styled.h3`
+	color: var(--gray-100);
 	font-size: var(--title-3);
 	font-weight: 600;
 `;
