@@ -25,9 +25,12 @@ export const ChangeTheme = styled.button`
 	left: 10px;
 	bottom: 10px;
 
+	transform: translate(0, 20px);
+
 	transition: all 0.3s ease;
 
 	&:hover {
 		filter: brightness(1.1);
+		transform: translate(0, 0);
 	}
 `;

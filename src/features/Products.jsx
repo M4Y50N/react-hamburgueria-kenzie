@@ -88,7 +88,12 @@ export const Products = ({ products, filterProd, loading }) => {
 			<StyledProductsContainer>
 				<StyledProductsList>
 					{loading ? (
-						<Img src={loadingbuffering} alt="Loading..." Width={"250px"} />
+						<Img
+							src={loadingbuffering}
+							alt="Loading..."
+							Width={"100px"}
+							Height={"100px"}
+						/>
 					) : products.length ? (
 						products.map((prod, i) => {
 							return (

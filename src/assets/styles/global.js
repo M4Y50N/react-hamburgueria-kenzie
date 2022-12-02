@@ -57,7 +57,7 @@ export default createGlobalStyle`
     }
     /* Track */
     ::-webkit-scrollbar-track {
-        background: var(--color-text-light);
+        background: var(--gray-0);
         /* border-radius: 1.6rem; */
     }
     /* Handle */
